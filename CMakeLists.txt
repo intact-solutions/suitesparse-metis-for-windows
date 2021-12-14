@@ -223,9 +223,6 @@ endif()
 
 hunter_add_package(LAPACK) # only in effect if HUNTER_ENABLED is set
 # prefer LAPACK config file
-if (WIN32)
-  set(LAPACK_DIR "lapack_windows/x64/" CACHE PATH "LAPACK directory" )
-endif()
 
 find_package(LAPACK CONFIG)
 if (LAPACK_FOUND AND TARGET blas AND TARGET lapack)
