@@ -234,7 +234,7 @@ list(APPEND CMAKE_MODULE_PATH "cmake/FindMKL.cmake")
 find_package(MKL REQUIRED)
 
 # Find TBB
-find_package(TBB REQUIRED)
+# find_package(TBB REQUIRED COMPONENTS tbb)
 
 hunter_add_package(LAPACK) # only in effect if HUNTER_ENABLED is set
 set(BLA_VENDOR Intel10_64lp)
