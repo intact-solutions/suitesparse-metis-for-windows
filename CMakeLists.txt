@@ -228,12 +228,16 @@ if(WITH_CUDA)
 	endif(${CUDA_FOUND})
 endif()
 
-hunter_add_package(LAPACK) # only in effect if HUNTER_ENABLED is set
-# prefer LAPACK config file
-if (WIN32)
-  set(LAPACK_DIR "lapack_windows/x64/" CACHE PATH "LAPACK directory" )
-endif()
 
+# Find MKL
+list(APPEND CMAKE_MODULE_PATH "cmake/FindMKL.cmake")
+find_package(MKL REQUIRED)
+
+# Find TBB
+find_package(TBB REQUIRED)
+
+hunter_add_package(LAPACK) # only in effect if HUNTER_ENABLED is set
+set(BLA_VENDOR Intel10_64lp)
 find_package(LAPACK CONFIG)
 if (LAPACK_FOUND AND TARGET blas AND TARGET lapack)
   message(STATUS "found lapack and blas config file. Linking targets lapack and blas")
