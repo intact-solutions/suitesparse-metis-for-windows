@@ -202,7 +202,7 @@ macro(declare_suitesparse_library targetName srcsList headersList)
 	)
 
 	if (WITH_TBB)
-		target_link_libraries(${targetName} ${dsl_TARGET_PRIVATE_LINK} tbb)
+		target_link_libraries(${targetName} ${dsl_TARGET_PRIVATE_LINK} TBB::tbb)
 		target_compile_definitions(${targetName} PRIVATE HAVE_TBB)
 	endif()
 
@@ -228,13 +228,7 @@ if(WITH_CUDA)
 	endif(${CUDA_FOUND})
 endif()
 
-
-# Find MKL
-list(APPEND CMAKE_MODULE_PATH "cmake/FindMKL.cmake")
 find_package(MKL REQUIRED)
-
-# Find TBB
-# find_package(TBB REQUIRED COMPONENTS tbb)
 
 hunter_add_package(LAPACK) # only in effect if HUNTER_ENABLED is set
 set(BLA_VENDOR Intel10_64lp)
