@@ -228,10 +228,7 @@ if(WITH_CUDA)
 	endif(${CUDA_FOUND})
 endif()
 
-find_package(MKL REQUIRED)
-
 hunter_add_package(LAPACK) # only in effect if HUNTER_ENABLED is set
-set(BLA_VENDOR Intel10_64lp)
 find_package(LAPACK CONFIG)
 if (LAPACK_FOUND AND TARGET blas AND TARGET lapack)
   message(STATUS "found lapack and blas config file. Linking targets lapack and blas")
